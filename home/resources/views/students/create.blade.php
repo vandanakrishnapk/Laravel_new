@@ -23,7 +23,7 @@
     </div>
 @endif
 
-<form action="{{route('students.store')}}" method="POST">
+<form action="{{route('students.store')}}" method="POST" enctype="multipart/form-data">
 @csrf 
 <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -35,19 +35,25 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date_of_birth:</strong>
-                <input type="text" name="date_of_birth" class="form-control" placeholder="email">
+                <input type="text" name="date_of_birth" class="form-control" placeholder="date_of_birth">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Class:</strong>
-                <input type="text" name="class" class="form-control" placeholder="designation">
+                <input type="text" name="class" class="form-control" placeholder="class">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Division:</strong>
-                <input type="text" name="division" class="form-control" placeholder="department">
+                <input type="text" name="division" class="form-control" placeholder="division">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>upload photo</strong>
+                <input type="file" name="photo" class="form-control">
             </div>
         </div>
         

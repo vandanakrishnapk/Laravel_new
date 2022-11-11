@@ -23,6 +23,7 @@
             <th>date_of_birth</th>
             <th>Class</th>
             <th>Division</th>
+            <th>photo</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($student as $students)
@@ -32,6 +33,7 @@
             <td>{{ $students->date_of_birth }}</td>
             <td>{{ $students->class }}</td>
             <td>{{ $students->division }}</td>
+            <td><img src="{{ asset($students->photo) }}" width="50" height="50" class="img img-responsive"></td>
             <td>
                 <form action="{{ route('students.destroy',$students->id) }}" method="POST">
    

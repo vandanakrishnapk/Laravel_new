@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Models\Student;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +18,6 @@ use App\Models\Student;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// Route::get('file-upload', [FileUploadController::class, 'fileUpload'])->name('file.upload');
+// Route::post('file-upload', [FileUploadController::class, 'fileUploadPost'])->name('file.upload.post');
 Route::resource('/students',HomeController::class);

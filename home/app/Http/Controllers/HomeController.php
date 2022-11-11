@@ -30,10 +30,18 @@ class HomeController extends Controller
         'name' => 'required',
         'date_of_birth' => 'required',
         'class' => 'required',
-        'division' =>'required'
+        'division' =>'required',
+        'photo' => 'required|mimes:pdf,xlx,csv,jpeg,png,jpg|max:2048',
      ]);
-     Student::create($request->all());   
-     return redirect()->route('students.index')->with('success','created successfully');
+    $student=$request->all();
+    if($request->hasfile('photo'))
+    {
+        $fileName=time().$request->file('photo')->getClientoriginalName();
+        $path=$request->file('photo')->storeAs('images',$fileName,'public');
+        $student["photo"]='/storage/'.$path;Student::create($student);
+    }
+   
+    return redirect()->route('students.index')->with('success','created successfully');   
     }
 
 
@@ -55,9 +63,23 @@ class HomeController extends Controller
             'name' => 'required',
             'date_of_birth' => 'required',
             'class' => 'required',
-            'division' =>'required'
+            'division' =>'required',
+            'photo' => 'required|mimes:pdf,xlx,csv,jpeg,png,jpg|max:2048',
          ]);
-       $student->update($request->all());
+         if($request->hasfile('photo'))
+         {
+            $destination_path='/storage/';
+            if(Student::exists($destination_path))
+            {
+                Student::(delete($destination_path));
+            }
+         }
+         $fileName=time().$request->file('photo')->getClientoriginalName();
+         $path=$request->file('photo')->storeAs('images',$fileName,'public');
+         $student["photo"]='/storage/'.$path;
+        //  Student::update($student);
+         $student->update($request->all());
+       
        return redirect()->route('students.index')->with('success','updated successfully');
     }
 
@@ -66,4 +88,20 @@ class HomeController extends Controller
       $student->delete();
       return redirect()->route('students.index')->with('success','deleted successfuly');
     }
+
+    // public function fileUploadPost(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+    //     ]);
+  
+    //     $fileName = time().'.'.$request->file->extension();  
+   
+    //     $request->file->move(public_path('uploads'), $fileName);
+   
+    //     return back()
+    //         ->with('success','You have successfully upload file.')
+    //         ->with('file',$fileName);
+   
+    // }
 }

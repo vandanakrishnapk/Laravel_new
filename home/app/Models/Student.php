@@ -13,5 +13,6 @@ class Student extends Model
         'date_of_birth',
         'class',
         'division',
+        'photo',
     ];
 }

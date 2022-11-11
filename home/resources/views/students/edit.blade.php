@@ -23,7 +23,7 @@
         </div>
     @endif
   
-    <form action="{{ route('students.update',$student->id) }}" method="POST">
+    <form action="{{ route('students.update',$student->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
         @method('PUT')
    
@@ -52,6 +52,12 @@
                     <input type="text" name="division" value="{{ $student->division }}" class="form-control" placeholder="department">
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>upload photo</strong>
+                <input type="file" name="photo" class="form-control">
+            </div>
+        </div>
           
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>

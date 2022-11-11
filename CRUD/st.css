@@ -1,0 +1,20 @@
+
+.input
+{
+    width:250px;
+    margin-left: 100px;
+    margin-top: 15px;
+   
+}
+.btn
+{
+    margin-top:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+}
+.form
+{
+    background-color: darkgrey;
+    width:750px;
+    margin-left:20%;
+}

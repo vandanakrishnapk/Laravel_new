@@ -1,0 +1,25 @@
+body{
+    background-color: bisque;
+}
+
+.form-control
+{
+    margin-top:250%;
+    background-color: bisque;
+    color:rgb(75, 123, 26);
+}
+.form-field-control
+{
+    width:300px;
+    margin-left: 25%;
+
+}
+.form-field-controls
+{
+    width:300px;
+    margin-top:20px;
+}
+.btn
+{
+    margin-top: 10px;
+}

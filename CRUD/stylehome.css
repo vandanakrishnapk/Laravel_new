@@ -1,0 +1,11 @@
+body{
+    background-image: url("https://www.legalraasta.com/wp-content/uploads/2015/10/Characteristics-of-a-Private-Limited-Company-legalraasta.jpg");
+    background-repeat: no-repeat;
+    
+    background-size: cover;
+} 
+
+.nav-item
+{
+    color:white;
+}

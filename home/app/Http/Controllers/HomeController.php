@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 
 class HomeController extends Controller
@@ -66,20 +67,26 @@ class HomeController extends Controller
             'division' =>'required',
             'photo' => 'required|mimes:pdf,xlx,csv,jpeg,png,jpg|max:2048',
          ]);
+         $data =['name' => $request->name,
+                  'date_of_birth' => $request->date_of_birth,
+                  'class' => $request->class,
+                  'division' =>$request->division,
+                  'photo' => $request->photo];
+     
          if($request->hasfile('photo'))
          {
-            $destination_path='/storage/';
-            if(Student::exists($destination_path))
+            $destination=public_path('/storage/'. '$student->photo');
+            if(File::exists($destination))
             {
-                Student::(delete($destination_path));
+                unlink($destination); 
             }
-         }
+        
          $fileName=time().$request->file('photo')->getClientoriginalName();
          $path=$request->file('photo')->storeAs('images',$fileName,'public');
-         $student["photo"]='/storage/'.$path;
-        //  Student::update($student);
-         $student->update($request->all());
-       
+         $data["photo"]='/storage/'.$path; 
+         $student->update($data);    
+        }
+        $student->update($data);
        return redirect()->route('students.index')->with('success','updated successfully');
     }
 
@@ -89,19 +96,5 @@ class HomeController extends Controller
       return redirect()->route('students.index')->with('success','deleted successfuly');
     }
 
-    // public function fileUploadPost(Request $request)
-    // {
-    //     $request->validate([
-    //         'file' => 'required|mimes:pdf,xlx,csv|max:2048',
-    //     ]);
   
-    //     $fileName = time().'.'.$request->file->extension();  
-   
-    //     $request->file->move(public_path('uploads'), $fileName);
-   
-    //     return back()
-    //         ->with('success','You have successfully upload file.')
-    //         ->with('file',$fileName);
-   
-    // }
 }

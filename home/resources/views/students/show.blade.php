@@ -13,6 +13,12 @@
     </div>
    
     <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <img src="{{ asset($student->photo) }}" width="100" height="100" class="img img-responsive">
+            </div>
+        </div>
+    </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
@@ -38,4 +44,5 @@
             </div>
         </div>
     </div>
+  
 @endsection

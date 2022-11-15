@@ -9,16 +9,13 @@ use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
         $student= Student::latest()->paginate(5);
     
         return view('students.index',compact('student'))
             ->with('i',(request()->input('page', 1) - 1) * 5);
-    }
-
- 
+    } 
     public function create()
     {
         return view('students.create');  
@@ -70,10 +67,10 @@ class HomeController extends Controller
          $data =['name' => $request->name,
                   'date_of_birth' => $request->date_of_birth,
                   'class' => $request->class,
-                  'division' =>$request->division,
+                  'division' =>$request->division,     
                   'photo' => $request->photo];
      
-         if($request->hasfile('photo'))
+         if($request->hasFile('photo'))
          {
             $destination=public_path('/storage/'. '$student->photo');
             if(File::exists($destination))
